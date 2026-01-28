@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, MessageCircle, Mail, ArrowRight } from 'lucide-react';
 import TypingText from './TypingText';
+import FloatingParticles from './FloatingParticles';
 import heroBg from '@/assets/hero-bg.jpg';
 
 const HeroSection = () => {
@@ -22,8 +23,11 @@ const HeroSection = () => {
       {/* Gradient overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background pointer-events-none" />
       
+      {/* Floating particles */}
+      <FloatingParticles />
+      
       {/* Grid pattern overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
