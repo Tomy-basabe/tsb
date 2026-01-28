@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, MessageCircle, Mail, ArrowRight } from 'lucide-react';
+import TypingText from './TypingText';
+import heroBg from '@/assets/hero-bg.jpg';
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -9,18 +11,27 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background pointer-events-none" />
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      
+      {/* Gradient overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background pointer-events-none" />
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
       
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
             duration: 8,
@@ -29,10 +40,10 @@ const HeroSection = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-accent/5 blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-accent/10 blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.2, 0.4, 0.2],
           }}
           transition={{
             duration: 8,
@@ -52,12 +63,12 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-block font-mono text-sm md:text-base text-primary px-4 py-2 bg-primary/10 rounded-full border border-primary/30">
+            <span className="inline-block font-mono text-sm md:text-base text-primary px-4 py-2 bg-primary/10 rounded-full border border-primary/30 backdrop-blur-sm">
               {'>'} Desarrollador Web Full Stack
             </span>
           </motion.div>
 
-          {/* Main heading */}
+          {/* Main heading with typing effect */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,7 +76,13 @@ const HeroSection = () => {
             className="font-mono text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
             <span className="text-foreground">Transformo ideas en </span>
-            <span className="text-primary text-glow">experiencias digitales</span>
+            <span className="text-primary text-glow block md:inline">
+              <TypingText 
+                text="experiencias digitales" 
+                speed={60} 
+                delay={800}
+              />
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
