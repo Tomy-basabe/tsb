@@ -104,7 +104,7 @@ const HeroSection = () => {
                 WhatsApp
               </a>
               <a
-                href="mailto:contacto@tomasbasabe.dev"
+                href="mailto:tomasbasabe.utn@gmail.com"
                 className="btn-neon flex items-center gap-2 px-6"
               >
                 <Mail className="w-4 h-4" />
