@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProjectCard, { type Project } from './portfolio/ProjectCard';
 import ProjectGalleryModal from './portfolio/ProjectGalleryModal';
 
-// TABE images
+// T.A.B.E images
 import tabeCover from '@/assets/projects/tabe/cover.jpg';
 import tabeDashboard from '@/assets/projects/tabe/dashboard.png';
 import tabePlanCarrera from '@/assets/projects/tabe/plan-carrera.png';
@@ -17,9 +17,21 @@ import tabePomodoro from '@/assets/projects/tabe/pomodoro.png';
 import tabeMetricas from '@/assets/projects/tabe/metricas.png';
 import tabeBosque from '@/assets/projects/tabe/bosque.png';
 
+// T.A.B.E Academy images
+import tabeAcademyCover from '@/assets/projects/tabe-academy/cover.jpg';
+import tabeAcademyLogin from '@/assets/projects/tabe-academy/login.png';
+import tabeAcademyPanelProfesor from '@/assets/projects/tabe-academy/panel-profesor.png';
+import tabeAcademyAlumnos from '@/assets/projects/tabe-academy/alumnos.png';
+import tabeAcademyCuadernillos from '@/assets/projects/tabe-academy/cuadernillos.png';
+import tabeAcademyUniversidades from '@/assets/projects/tabe-academy/universidades.png';
+import tabeAcademyVerAlumno from '@/assets/projects/tabe-academy/ver-alumno.png';
+import tabeAcademySeleccionUniversidad from '@/assets/projects/tabe-academy/seleccion-universidad.png';
+import tabeAcademyMaterias from '@/assets/projects/tabe-academy/materias.png';
+import tabeAcademyNiveles from '@/assets/projects/tabe-academy/niveles.png';
+
 const projects: Project[] = [
   {
-    title: 'TABE – Sistema Académico',
+    title: 'T.A.B.E – Sistema Académico',
     category: 'Aplicación Web',
     description: 'Plataforma integral para mejorar el rendimiento académico. Dashboard con métricas, plan de carrera, editor tipo Notion, flashcards con marketplace, biblioteca de recursos, calendario académico, método Pomodoro, sistema de bosque virtual gamificado, sala de estudio social y asistente IA.',
     tech: ['React', 'TypeScript', 'Supabase', 'Tailwind', 'Framer Motion'],
@@ -37,6 +49,40 @@ const projects: Project[] = [
       tabeBosque,
     ],
   },
+  {
+    title: 'T.A.B.E Academy – Gestión Académica',
+    category: 'Aplicación Web',
+    description: 'Plataforma para profesores de clases particulares. Panel de gestión de alumnos, cuadernillos y tareas por niveles, chat integrado profesor-alumno, seguimiento de progreso en tiempo real, soporte para secundario y universitario con múltiples universidades configurables.',
+    tech: ['React', 'TypeScript', 'Supabase', 'Tailwind', 'Framer Motion'],
+    coverImage: tabeAcademyCover,
+    screenshots: [
+      tabeAcademyLogin,
+      tabeAcademyPanelProfesor,
+      tabeAcademyAlumnos,
+      tabeAcademyCuadernillos,
+      tabeAcademyUniversidades,
+      tabeAcademyVerAlumno,
+      tabeAcademySeleccionUniversidad,
+      tabeAcademyMaterias,
+      tabeAcademyNiveles,
+    ],
+  },
+  {
+    title: 'Senderos del Puente',
+    category: 'Web Institucional',
+    description: 'Página web institucional para lavadero de zanahorias de alcance nacional. Muestra todo el proceso desde el cultivo hasta la distribución con videos, imágenes de alta calidad y animaciones dinámicas. Presenta las marcas emblemáticas y transmite frescura, calidad y profesionalismo.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Video'],
+    coverImage: '', // Pendiente de imágenes
+    screenshots: [],
+  },
+  {
+    title: '5INCO Indumentaria',
+    category: 'E-commerce + Gestión',
+    description: 'Plataforma web para tienda de ropa con panel de administración completo. Gestión de productos, stock por talle y color, categorías, panel de cajero para ventas diarias, sistema de avisos internos, descuentos y destacados. Control total del negocio en un solo lugar.',
+    tech: ['React', 'TypeScript', 'Supabase', 'Tailwind', 'Framer Motion'],
+    coverImage: '', // Pendiente de imágenes
+    screenshots: [],
+  },
 ];
 
 const PortfolioSection = () => {
@@ -46,12 +92,15 @@ const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
+  // Filter projects that have cover images for display
+  const displayProjects = projects.filter(p => p.coverImage);
+
   const nextProject = () => {
-    setActiveIndex((prev) => (prev + 1) % projects.length);
+    setActiveIndex((prev) => (prev + 1) % displayProjects.length);
   };
 
   const prevProject = () => {
-    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setActiveIndex((prev) => (prev - 1 + displayProjects.length) % displayProjects.length);
   };
 
   const handleViewGallery = (project: Project) => {
@@ -87,8 +136,8 @@ const PortfolioSection = () => {
         </motion.div>
 
         {/* Desktop Grid */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {projects.map((project, index) => (
+        <div className="hidden lg:grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {displayProjects.map((project, index) => (
             <ProjectCard
               key={project.title}
               project={project}
@@ -101,15 +150,17 @@ const PortfolioSection = () => {
 
         {/* Mobile Carousel */}
         <div className="lg:hidden relative">
-          <ProjectCard
-            project={projects[activeIndex]}
-            index={0}
-            isInView={isInView}
-            onViewGallery={handleViewGallery}
-          />
+          {displayProjects.length > 0 && (
+            <ProjectCard
+              project={displayProjects[activeIndex]}
+              index={0}
+              isInView={isInView}
+              onViewGallery={handleViewGallery}
+            />
+          )}
 
           {/* Navigation - only show if more than 1 project */}
-          {projects.length > 1 && (
+          {displayProjects.length > 1 && (
             <div className="flex items-center justify-center gap-4 mt-6">
               <button
                 onClick={prevProject}
@@ -118,7 +169,7 @@ const PortfolioSection = () => {
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <div className="flex gap-2">
-                {projects.map((_, index) => (
+                {displayProjects.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
@@ -137,6 +188,18 @@ const PortfolioSection = () => {
             </div>
           )}
         </div>
+
+        {/* Coming soon projects note */}
+        {projects.some(p => !p.coverImage) && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center text-muted-foreground text-sm mt-8"
+          >
+            Más proyectos próximamente: Senderos del Puente, 5INCO Indumentaria
+          </motion.p>
+        )}
       </div>
 
       {/* Gallery Modal */}
