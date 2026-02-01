@@ -217,17 +217,6 @@ const PortfolioSection = () => {
           )}
         </div>
 
-        {/* Coming soon projects note */}
-        {projects.some(p => !p.coverImage) && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center text-muted-foreground text-sm mt-8"
-          >
-            Más proyectos próximamente: Senderos del Puente, 5INCO Indumentaria
-          </motion.p>
-        )}
       </div>
 
       {/* Gallery Modal */}
