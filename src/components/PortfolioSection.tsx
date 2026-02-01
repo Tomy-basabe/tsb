@@ -29,6 +29,22 @@ import tabeAcademySeleccionUniversidad from '@/assets/projects/tabe-academy/sele
 import tabeAcademyMaterias from '@/assets/projects/tabe-academy/materias.png';
 import tabeAcademyNiveles from '@/assets/projects/tabe-academy/niveles.png';
 
+// Senderos del Puente images
+import senderosCover from '@/assets/projects/senderos/cover.jpg';
+import senderosHero from '@/assets/projects/senderos/hero.png';
+import senderosNosotros from '@/assets/projects/senderos/nosotros.png';
+import senderosAliados from '@/assets/projects/senderos/aliados.png';
+import senderosMaquinaria from '@/assets/projects/senderos/maquinaria.png';
+import senderosMarcas from '@/assets/projects/senderos/marcas.png';
+import senderosContacto from '@/assets/projects/senderos/contacto.png';
+
+// 5INCO Indumentaria images
+import cincoCover from '@/assets/projects/5inco/cover.jpg';
+import cincoHero from '@/assets/projects/5inco/hero.png';
+import cincoCatalogo from '@/assets/projects/5inco/catalogo.png';
+import cincoContacto from '@/assets/projects/5inco/contacto.png';
+import cincoAdmin from '@/assets/projects/5inco/admin.png';
+
 const projects: Project[] = [
   {
     title: 'T.A.B.E – Sistema Académico',
@@ -72,16 +88,28 @@ const projects: Project[] = [
     category: 'Web Institucional',
     description: 'Página web institucional para lavadero de zanahorias de alcance nacional. Muestra todo el proceso desde el cultivo hasta la distribución con videos, imágenes de alta calidad y animaciones dinámicas. Presenta las marcas emblemáticas y transmite frescura, calidad y profesionalismo.',
     tech: ['React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Video'],
-    coverImage: '', // Pendiente de imágenes
-    screenshots: [],
+    coverImage: senderosCover,
+    screenshots: [
+      senderosHero,
+      senderosNosotros,
+      senderosAliados,
+      senderosMaquinaria,
+      senderosMarcas,
+      senderosContacto,
+    ],
   },
   {
     title: '5INCO Indumentaria',
     category: 'E-commerce + Gestión',
     description: 'Plataforma web para tienda de ropa con panel de administración completo. Gestión de productos, stock por talle y color, categorías, panel de cajero para ventas diarias, sistema de avisos internos, descuentos y destacados. Control total del negocio en un solo lugar.',
     tech: ['React', 'TypeScript', 'Supabase', 'Tailwind', 'Framer Motion'],
-    coverImage: '', // Pendiente de imágenes
-    screenshots: [],
+    coverImage: cincoCover,
+    screenshots: [
+      cincoHero,
+      cincoCatalogo,
+      cincoContacto,
+      cincoAdmin,
+    ],
   },
 ];
 
@@ -189,17 +217,6 @@ const PortfolioSection = () => {
           )}
         </div>
 
-        {/* Coming soon projects note */}
-        {projects.some(p => !p.coverImage) && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center text-muted-foreground text-sm mt-8"
-          >
-            Más proyectos próximamente: Senderos del Puente, 5INCO Indumentaria
-          </motion.p>
-        )}
       </div>
 
       {/* Gallery Modal */}
