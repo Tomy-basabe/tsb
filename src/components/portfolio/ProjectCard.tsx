@@ -155,7 +155,7 @@ const ProjectCard = ({ project, index, isInView, onViewGallery }: ProjectCardPro
           {project.title}
         </motion.h3>
         
-        <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
+        <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
           {project.description}
         </p>
         
