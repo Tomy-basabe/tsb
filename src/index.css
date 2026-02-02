@@ -191,6 +191,68 @@
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
   }
 
+  /* Futuristic glitch effect */
+  .animate-glitch {
+    animation: glitch 2s ease-in-out infinite;
+  }
+
+  /* Cyber scan line */
+  .animate-scan {
+    animation: scan 3s linear infinite;
+  }
+
+  /* Holographic shimmer */
+  .animate-holographic {
+    animation: holographic 3s ease-in-out infinite;
+    background: linear-gradient(
+      90deg,
+      hsl(180 100% 50% / 0.1),
+      hsl(160 100% 45% / 0.3),
+      hsl(180 100% 50% / 0.1)
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Matrix rain effect class */
+  .animate-matrix {
+    animation: matrix-fade 4s ease-in-out infinite;
+  }
+
+  /* Neon flicker */
+  .animate-neon-flicker {
+    animation: neon-flicker 3s ease-in-out infinite;
+  }
+
+  /* Cyber border */
+  .cyber-border {
+    position: relative;
+  }
+
+  .cyber-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(180 100% 50%), hsl(160 100% 45%), hsl(180 100% 50%));
+    background-size: 200% 200%;
+    animation: gradient-rotate 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Hover scale with glow */
+  .hover-glow-scale {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow-scale:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px hsl(180 100% 50% / 0.2);
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -213,5 +275,89 @@
   @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: hsl(180 100% 50%); }
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+      filter: hue-rotate(0deg);
+    }
+    10% {
+      transform: translate(-2px, 2px);
+      filter: hue-rotate(90deg);
+    }
+    20% {
+      transform: translate(2px, -2px);
+      filter: hue-rotate(180deg);
+    }
+    30% {
+      transform: translate(-1px, 1px);
+      filter: hue-rotate(270deg);
+    }
+    40%, 90% {
+      transform: translate(0);
+      filter: hue-rotate(0deg);
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+  }
+
+  @keyframes holographic {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes matrix-fade {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes neon-flicker {
+    0%, 100% {
+      opacity: 1;
+      text-shadow: 0 0 10px hsl(180 100% 50% / 0.8), 0 0 20px hsl(180 100% 50% / 0.6), 0 0 30px hsl(180 100% 50% / 0.4);
+    }
+    92% {
+      opacity: 1;
+    }
+    93% {
+      opacity: 0.8;
+    }
+    94% {
+      opacity: 1;
+    }
+    96% {
+      opacity: 0.9;
+    }
+    97% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes gradient-rotate {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
